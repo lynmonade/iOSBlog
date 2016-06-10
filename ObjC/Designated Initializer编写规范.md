@@ -100,6 +100,7 @@ MyViewController *vc = [MyViewController alloc] initWithNibName:@"vcNib" bundle:
 
 #只能有一个Designated Initializer吗？
 ![](http://ww1.sinaimg.cn/mw690/0065Y1avgw1f3w1tr0qdaj30pt094gqz.jpg)
+
 这是API中关于`initWithNibName:bundle:`方法的讨论。高亮部分说到: 如果使用storyboard创建VC，则系统自动调用`initWithCoder:`创建VC，而不是使用`initWithNibName:bundle:`创建VC。
 
 ...这脸打得好疼。之前还说推荐使用`initWithNibName:bundle:`，为毛系统自己却用`initWithCoder:`创建VC。
