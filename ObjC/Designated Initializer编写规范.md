@@ -1,6 +1,6 @@
 Designated Initializer翻译过来就是`指定初始化函数。先看一则关于UIViewController的小故事。
 
-#如何创建UIViewController
+#以UIViewController为例
 
 如何创建一个UIViewController呢？不懂？老老实实翻API去...
 
