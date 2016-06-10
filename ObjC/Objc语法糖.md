@@ -1,4 +1,4 @@
-##使用instancetype
+#使用instancetype
 当你在编写alloc方法、initXXX方法、工厂方法时，推荐使用instancetype作为返回值，而不是id类型。
 
 ```objc
@@ -35,7 +35,7 @@ int main(int argc, const char * argv[]) {
 
 因此正确使用instancetype关键字，能帮助我们在编译期就解决很多潜在的问题，而不是在运行期才发现问题。
 
-##两个实用的枚举宏
+#两个实用的枚举宏
 ```objc
 //1. NS_ENUM: 单选，且必须是NSInteger类型
 //旧的方式
@@ -84,7 +84,7 @@ typedef NS_OPTIONS(NSUInteger, UIViewAutoresizing) {
 
 一般推荐把枚举变量定义在全局变量的位置，这样整个文件的所有方法都可以访问枚举变量。
 
-##Designated Initializer
+#Designated Initializer
 关于Designated Initializer的介绍，可以看下[Designated Initializer编写规范](http://www.jianshu.com/p/f92972bf7300)。在objc中，可以使用宏`NS_DESIGNATED_INITIALIZER `明确指出Designated Initializer。如果你的编写方式不符合规范，编译器就会提出警告。
 
 ```objc
@@ -140,7 +140,7 @@ Convenience initializer should not invoke an initializer on 'super'
 }
 ```
 
-##Literal Syntax
+#Literal Syntax
 Literal Syntax可以看做是factory method，并且拥有更简洁的语法格式。
 
 ```objc
@@ -170,9 +170,9 @@ id value1 = dictionary[@"key1"];
 
 ```
 
-##变量
+#变量
 静态局部变量、全局变量、静态全局变量经常会搞混，下面分别讲解下。
-###静态局部变量
+##静态局部变量
 静态局部变量在静态存储区分配空间，其生命周期与程序相同(即只要程序未关闭，静态局部变量就一直存在)。因此即使methodA调用完毕后，a变量并不会销毁。所以第二次调用方法时将打印a=11。此外，静态局部变量的作用域是该方法内部。
 
 ```objc
@@ -194,7 +194,7 @@ ObjectA *objectA = [[ObjectA alloc] init];
 [objectA methodA]; //a=11
 ```
 
-###全局变量
+##全局变量
 全局变量对于整个程序的所有源文件均可见(即作用域是程序内)。所有源文件均可以访问和修改全局变量。全局变量也在静态存储区分配空间，生命周期与整个程序相同。
 
 如果文件B需要使用定义在文件A中的全局变量，则必须在文件B中使用extern关键字重新声明这个全局变量。extern关键字会告诉编译器: 这个全局变量是存在的，但并没有定义在文件B中，而是存在于其他外部(extern)文件中，在编译链接时就会找到该全局变量了！
@@ -239,7 +239,7 @@ NSString * const cell = @"cell"; //注意const的位置
 ```
 建议把一个程序中所需的全局变量统一定义在一个文件中。这样可以有效避免全局变量命名冲突，更好地管理所有全局变量。
 
-###静态全局变量
+##静态全局变量
 静态全局变量的作用域是文件作用域(仅本文件内有效)。假设静态成员变量定义在文件A中，则文件A中的所有方法都可以使用这个静态成员变量。但文件B则无法直接使用这个静态成员变量。
 
 静态全局变量也在静态存储区分配空间，生命周期与整个程序相同。
@@ -255,7 +255,7 @@ static NSString *identifer = @"cell"; //静态全局变量
 }
 ```
 
-###变量小结
+##变量小结
 1. 局部变量在栈上分配空间。
 2. 静态局部变量、全局变量、静态全局变量都是在静态存储区分配空间(注意不是堆噢！)
 3. 给局部变量加上static关键字后，将变成静态局部变量。其作用域保持不变，但生命周期发生变化，与程序生命周期相同。
